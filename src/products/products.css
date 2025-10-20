@@ -1,0 +1,54 @@
+
+
+
+.prodducts{
+    display: grid;
+    grid-template-areas: 'a b c '
+                         'd e f '
+                         'g h i ';
+  gap: 24px;
+}
+
+main:hover img{
+    object-fit: cover;
+   box-shadow:5px 5px 5px  black;
+   height: 310px;
+   width: 310px;
+}
+main img{
+ 
+   height: 300px;
+   width: 300px;
+}
+
+
+
+.box-0{
+    grid-area:a ;
+  
+
+}
+.box-1{
+    grid-area: b;
+}
+.box-2{
+    grid-area: c;
+}
+.box-3{
+    grid-area:d ;
+}
+.box-4{
+    grid-area:e ;
+}
+.box-5{
+    grid-area:f ;
+}
+.box-6{
+    grid-area:g ;
+}
+.box-7{
+    grid-area: h;
+}
+.box-8{
+    grid-area: i;
+}
