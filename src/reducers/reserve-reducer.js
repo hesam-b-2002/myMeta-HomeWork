@@ -1,11 +1,16 @@
 
-import * as actions from '../actions/actions'
+import * as actions from "../action-types/action-types"
 
-const tableList=[]
+const table=[]
 
 
-export const reservReducer=(state=tableList,action)=>{
-    switch(actions.type){
+export const reservReducer=(state=table,action)=>{
+    switch(action.type){
+        case actions.Reserve_table:
+            return [...state,action.payload]
+            
+        default:
+            return state;
     
     }
 }
