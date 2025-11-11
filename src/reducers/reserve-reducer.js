@@ -7,8 +7,12 @@ const table=[]
 export const reservReducer=(state=table,action)=>{
     switch(action.type){
         case actions.Reserve_table:
-            return [...state,action.payload]
-            
+            const is_avilable=action.payload.avilable===true
+            if (is_avilable )
+                return [...state,action.payload.avilable=false]
+            else
+                alert('not avilable')
+        
         default:
             return state;
     
