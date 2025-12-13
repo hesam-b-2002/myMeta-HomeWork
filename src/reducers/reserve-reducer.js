@@ -1,23 +1,38 @@
 
 import * as actions from "../action-types/action-types"
-
-const table=[]
-
-
-export const reservReducer=(state=table,action)=>{
+import { finalize ,Clear, select_time} from "../actions/actions";
+import { tables} from "../tables/tables";
+const table_items=tables
+export const reservReducer=(state=table_items,action)=>{
     switch(action.type){
-        case actions.Reserve_table:
-            const is_avilable=action.payload.avilable===true
-            const avilable_times=action.payload.avilable_times
-            if (is_avilable )
-                return [...state,action.payload.avilable=false]
-            else
-                alert('not avilable')
-        case actions.Select_time:
+      case actions.Select_time:
+        const table_id=action.payload.table.id
+        const table_time=action.payload.time
+        return state.map((table)=>{
+          if (table.id===table_id)
+         { return(
+            {...table, chosen_time:[table_time]}
+          )}
+          if(table.chosen_time.includes(table_time)){
             
-            return [...state]
-        default:
-            return state;
+          }
+         
+          else 
+            return table;
+        })
+        case actions.Clear:
+          return state;
+        case finalize:
+          return state;
+      default:
+          return state;
     
-    }
+    } 
 }
+//redux pattern :
+// return fucking everything update one thing 
+// [bluh , bluh , updated_fucking_shit , bluh , bluh ]
+// my first fucking action is supposed to give an updated arrey -->
+//    --> which is an updated chosen_time arrey containing ur fucking chosen time
+// my second action is suppose to give the next fucking updated arrey -->
+// which is reflected on my fucking ui 

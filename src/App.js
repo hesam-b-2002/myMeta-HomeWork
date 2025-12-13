@@ -1,8 +1,8 @@
-
+import { BrowserRouter,Routes,Route,Link } from "react-router"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "./actions/actions";
-
+import { DashBoard } from "./dashBoard/dashBoard";
 import{ProdudtsList} from './products/products'
 import { Tablelist } from "./tables/Tables";
 
@@ -18,11 +18,19 @@ function App() {
     <div style={{background:pageTheme==='light'?'white':'black',
       color:pageTheme==='light'?'black':'white'}}>
       <button onClick={()=>((dispatch(toggleTheme(pageTheme))))}>dark</button>
-    <Tablelist/>
-    <ProdudtsList/>
     </div>
+    <BrowserRouter>
+        <Link to='/ProdudtsList'><h1>products</h1></Link>
+        <Link to='/DashBoard'><h1>DashBoard</h1></Link>
+        <Link to='/Tablelist'><h1>Tablelist</h1></Link>
+        <Link to='/App'>Home</Link>
 
-
+        <Routes>
+          <Route path="DashBoard" element={<DashBoard/>}/>
+          <Route path="ProdudtsList" element={<ProdudtsList/>}/>
+          <Route path="Tablelist" element={<Tablelist/>}/>
+        </Routes>
+    </BrowserRouter>
     </>
   );
 }
