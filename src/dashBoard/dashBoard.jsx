@@ -40,6 +40,7 @@ export const DashBoard=()=>{
                    {chosen_table.price} — {chosen_table.position}
                    —
                    time_selected:{chosen_table.chosen_time}
+                   
                  </p>
                </div>
              )}

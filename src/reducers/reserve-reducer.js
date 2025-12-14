@@ -1,10 +1,11 @@
 
 import * as actions from "../action-types/action-types"
-import { finalize ,Clear, select_time} from "../actions/actions";
 import { tables} from "../tables/tables";
 const table_items=tables
 export const reservReducer=(state=table_items,action)=>{
     switch(action.type){
+      case actions.LoadProducts:
+        return state;
       case actions.Select_time:
         const table_id=action.payload.table.id
         const table_time=action.payload.time
@@ -14,15 +15,25 @@ export const reservReducer=(state=table_items,action)=>{
             {...table, chosen_time:[table_time]}
           )}
           if(table.chosen_time.includes(table_time)){
+            return table;
             
           }
          
           else 
             return table;
-        })
+        });
+
         case actions.Clear:
-          return state;
-        case finalize:
+          return state.map((t)=>{
+            if(t.chosen_time.length > 0){
+              return {...t,chosen_time:[]}
+            }else{
+              return t;
+            }
+          })
+
+     
+        case actions.Finalize:
           return state;
       default:
           return state;

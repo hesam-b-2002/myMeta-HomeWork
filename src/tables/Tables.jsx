@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { tables } from "./tables";
-import { clear, loadProducts, reserve_table,select_time } from "../actions/actions";
+import { clear, loadProducts,select_time } from "../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
 export const Tablelist = () => {
-  const table_State = useSelector((state) => state.products);
+  const table_State = useSelector((state) => state.table);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadProducts(tables));
+    dispatch(loadProducts(table_State));
   }, [dispatch]);
 
   return (
@@ -45,9 +45,11 @@ export const Tablelist = () => {
           />
 
           <p style={{ marginBottom: "8px", fontWeight: 600 }}>
-            {table.price} — {table.position}
+            {table.price} — {table.position} 
           </p>
-
+          <p style={{ marginBottom: "8px", fontWeight: 600 }}>
+            {`time chosen:${table.chosen_time}`}
+          </p>
           <select
             onChange={(e) => {
               const time = Number(e.target.value);
@@ -86,8 +88,8 @@ export const Tablelist = () => {
             color:'red'
           }}
           onClick={
-            ()=>{
-              dispatch(clear(table.id))}
+            ()=>
+              dispatch(clear(table))
           }
           >X</button>
         </div>
