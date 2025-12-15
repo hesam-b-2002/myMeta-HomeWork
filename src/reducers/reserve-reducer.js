@@ -34,7 +34,15 @@ export const reservReducer=(state=table_items,action)=>{
 
      
         case actions.Finalize:
-          return state;
+          const selcted_tableId=action.payload.chosen_table.id
+        const selected_time=action.payload.time
+          return state.map((selcted_table)=>{
+            if(selcted_table.id===selcted_tableId){
+              return { ...selcted_table,unavailable_times:[selected_time],chosen_time:[]}
+            }else{
+              return selcted_table;
+            }
+          });
       default:
           return state;
     

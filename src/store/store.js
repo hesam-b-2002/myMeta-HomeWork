@@ -21,6 +21,9 @@ const guardMidlleware = store => next =>action=>{
     ){
       alert('time is already slected')
       return;
+    }if(current_state.unavailable_times.length > 0){
+      alert('this table is not available for reservation')
+      return;
     }
   }
 
