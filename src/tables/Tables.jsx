@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { tables } from "./tables";
+import { useEffect, useState } from "react";
 import { clear, loadProducts,select_time } from "../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,6 +32,7 @@ export const Tablelist = () => {
           }}
         >
           <img
+          role='img'
             src={table.src}
             alt={`table number ${table.id}`}
             style={{
@@ -47,8 +47,9 @@ export const Tablelist = () => {
           <p style={{ marginBottom: "8px", fontWeight: 600 }}>
             {table.price} — {table.position} 
           </p>
-          <p style={{ marginBottom: "8px", fontWeight: 600 }}>
-            {`time chosen:${table.chosen_time}`}
+          <p 
+          style={{ marginBottom: "8px", fontWeight: 600 }}>
+            time chosen:{table.chosen_time}
           </p>
           <select
             onChange={(e) => {
@@ -72,28 +73,35 @@ export const Tablelist = () => {
 
             {table.available_times.map((time) => (
               <option
+              role='option'
+              
                 key={time}
                 value={time}
                 style={{
                       background: "#c2f7c5", // light green
                   fontWeight: "bold",
               
+              
                 }}
+
+
               >
                 {time}
               </option>
             ))}
           </select>
-          <button style={{
+          <button 
+          style={{
             color:'red'
           }}
           onClick={
             ()=>
               dispatch(clear(table))
           }
-          >X</button>
+          >clear</button>
         </div>
       ))}
+      
     </div>
   );
 };
