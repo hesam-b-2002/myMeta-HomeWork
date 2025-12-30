@@ -23,6 +23,7 @@ export const Tablelist = () => {
     >
       {table_State.map((table) => (
         <div
+        role='article'
           key={table.id}
           style={{
             background: "#f8f8f8",
@@ -32,6 +33,7 @@ export const Tablelist = () => {
           }}
         >
           <img
+          id={table.id}
           role='img'
             src={table.src}
             alt={`table number ${table.id}`}
@@ -48,10 +50,12 @@ export const Tablelist = () => {
             {table.price} — {table.position} 
           </p>
           <p 
+          
           style={{ marginBottom: "8px", fontWeight: 600 }}>
             time chosen:{table.chosen_time}
           </p>
           <select
+          role='combobox'
             onChange={(e) => {
               const time = Number(e.target.value);
               dispatch(
@@ -86,7 +90,7 @@ export const Tablelist = () => {
 
 
               >
-                {time}
+                {time} pm
               </option>
             ))}
           </select>
